@@ -1,0 +1,24 @@
+version: '3.8'
+
+services:
+  geth:
+    image: ernest/eth
+    restart: always
+    container_name: 'geth'
+    environment:
+      BLOCK_SIGNER_KEY: 'dae1a9bffa1a808d3e957fdec61e0979e412206bde948d0e29d925acada9ad82'
+      BLOCK_SIGNER_ADDRESS: '0xbb8227fc9e5716d12f4b4eea18ac2b188cf19851'
+    ports:
+      - 8545:8545
+    networks:
+      localnet:
+        ipv4_address: 192.167.0.2
+
+networks:
+  localnet:
+    driver: bridge
+    ipam:
+      driver: default
+      config:
+        -
+          subnet: 192.167.0.0/16
